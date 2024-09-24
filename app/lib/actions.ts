@@ -35,12 +35,9 @@ export type State = {
 export async function createInvoice(prevState: State, formData: FormData) {
     const validatedFields = CreateInvoice.safeParse({
       customerId: formData.get('customerId'),
-      amount: formData.get('amount'),
-      status: formData.get('status'),
+      amount:     formData.get('amount'),
+      status:     formData.get('status'),
     });
-
-    // If form validation fails, return errors early. Otherwise, continue.
-    console.log(`Validated Fileds: ${validatedFields}`);
 
     if (!validatedFields.success) {
       return {
@@ -48,6 +45,10 @@ export async function createInvoice(prevState: State, formData: FormData) {
         message: 'Missing Fields. Failed to Create Invoice.',
       };
     }
+
+      // If form validation fails, return errors early. Otherwise, continue.
+      console.log(`Validated Fileds: ${validatedFields}`);
+      const { customerId, amount, status } = validatedFields.data;
       
     // Storing monetary amounts in cents to 
     // eliminate JavaScript floating-point errors and ensure greater accuracy.
