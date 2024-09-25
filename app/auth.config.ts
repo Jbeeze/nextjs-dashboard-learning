@@ -1,5 +1,4 @@
 import type { NextAuthConfig } from 'next-auth';
-import { NextURL } from 'next/dist/server/web/next-url';
 
 export const authConfig = {
     pages: {
